@@ -333,7 +333,7 @@ tt2ttYaml path TipToiFile{..} = TipToiYAML
     , ttyGames = list2Maybe $ map game2gameYaml ttGames
     , ttyReplay = fmap fst ttSpecialOIDs
     , ttyStop = fmap snd ttSpecialOIDs
-    , ttyBinaries = Just BinariesYaml
+    , ttyBinaries = binaries2Maybe $ BinariesYaml
       { bsyGames3201   = bins "games3201"  ttBinaryGames3201
       , bsyGames3202N  = bins "games3202N" ttBinaryGames3202N
       , bsyGames3203L  = bins "games3203L" ttBinaryGames3203L
@@ -343,7 +343,14 @@ tt2ttYaml path TipToiFile{..} = TipToiYAML
       }
     , ttyExtra_Media = Nothing
     }
-  where bins g bs = Just (OptArray (map fst (binariesWithPath defaultBinariesPath g bs)))
+  where
+    bins g [] = Nothing
+    bins g bs = Just (OptArray (map fst (binariesWithPath defaultBinariesPath g bs)))
+    mkBinariesYaml (BinariesYaml Nothing Nothing Nothing Nothing Nothing Nothing) = Nothing
+    mkBinariesYaml by = Just by
+
+binaries2Maybe (BinariesYaml Nothing Nothing Nothing Nothing Nothing Nothing) = Nothing
+binaries2Maybe by = Just by
 
 list2Maybe [] = Nothing
 list2Maybe xs = Just xs
