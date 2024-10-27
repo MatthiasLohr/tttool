@@ -111,7 +111,7 @@ putTipToiFile (TipToiFile {..}) = mdo
     putWord32 binsg3202N
     putWord32 0
     putWord32 binsm3201
-    putWord32 1
+    putWord32 (if null ttBinaryMain3201 && null ttBinaryMain3202N && null ttBinaryMain3203L then 0 else 1)
     putWord32 binsm3202N
     seek 0x00C8
     putWord32 binsm3203L
@@ -124,13 +124,14 @@ putTipToiFile (TipToiFile {..}) = mdo
     mft <- getAddress $ putAudioTable ttAudioXor ttAudioFiles
     ipllo <- getAddress $ putPlayListList ttWelcome
     sso <- getAddress $ putSpecialSymbols ttSpecialOIDs
-    binsm3201  <- getAddress $ putBinaries ttBinaryMain3201
-    binsm3202N <- getAddress $ putBinaries ttBinaryMain3202N
-    binsm3203L <- getAddress $ putBinaries ttBinaryMain3203L
-    binsg3201  <- getAddress $ putBinaries ttBinaryGames3201
-    binsg3202N <- getAddress $ putBinaries ttBinaryGames3202N
-    binsg3203L <- getAddress $ putBinaries ttBinaryGames3203L
+    binsm3201  <- putBinaries ttBinaryMain3201
+    binsm3202N <- putBinaries ttBinaryMain3202N
+    binsm3203L <- putBinaries ttBinaryMain3203L
+    binsg3201  <- putBinaries ttBinaryGames3201
+    binsg3202N <- putBinaries ttBinaryGames3202N
+    binsg3203L <- putBinaries ttBinaryGames3203L
     return ()
+
 
 putGameTable :: [Game] -> SPut
 putGameTable games = putOffsets putWord32 $ map putGame games
@@ -380,8 +381,10 @@ putAudioTable x as = mapFstMapSnd
                (getAddress (putBS (cypher x a)))
     | a <- as ]
 
-putBinaries :: Binaries -> SPut
-putBinaries bs = do
+-- Puts binaries and returns address (0 if no binaries present)
+putBinaries :: Binaries -> SPutM Word32
+putBinaries [] = return 0
+putBinaries bs = getAddress $ do
   putWord16 (fromIntegral (length bs))
   putBS $ B.replicate 14 0
   mapFstMapSnd 
