@@ -11,6 +11,6 @@ Scripts for OIDs from 34 to 3583; 3018/3550 are disabled.
 Audio table entries: 909
 Audio table copy: Equal
 Binary tables entries: 14/14/14
-Single binary table entries: 1/1/1
+Main binary table entries: 1/1/1
 Special OIDs: 3010, 3009
 Checksum found 0xC3F06F70, calculated 0xC3F06F70

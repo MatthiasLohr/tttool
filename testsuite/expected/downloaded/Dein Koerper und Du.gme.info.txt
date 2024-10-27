@@ -11,6 +11,6 @@ Scripts for OIDs from 5670 to 9969; 3709/4300 are disabled.
 Audio table entries: 1448
 Audio table copy: Equal
 Binary tables entries: 1/1/1
-Single binary table entries: 1/1/1
+Main binary table entries: 1/1/1
 Special OIDs: 9756, 0
 Checksum found 0x00931E25, calculated 0x00931E25

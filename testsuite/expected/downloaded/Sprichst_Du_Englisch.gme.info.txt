@@ -11,6 +11,6 @@ Scripts for OIDs from 11201 to 11938; 131/738 are disabled.
 Audio table entries: 1209
 Audio table copy: Equal
 Binary tables entries: 1/1/1
-Single binary table entries: 1/1/1
+Main binary table entries: 1/1/1
 Special OIDs: 11817, 0
 Checksum found 0x6562C2BA, calculated 0x6562C2BA

@@ -11,6 +11,6 @@ Scripts for OIDs from 8000 to 13237; 3906/5238 are disabled.
 Audio table entries: 2214
 Audio table copy: Equal
 Binary tables entries: 8/8/8
-Single binary table entries: 1/1/1
+Main binary table entries: 1/1/1
 Special OIDs: 12159, 12158
 Checksum found 0xDD8D8230, calculated 0xDD8D8230

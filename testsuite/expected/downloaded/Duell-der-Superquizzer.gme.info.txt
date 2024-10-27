@@ -11,6 +11,6 @@ Scripts for OIDs from 4100 to 4300; 0/201 are disabled.
 Audio table entries: 2115
 Audio table copy: Similar
 Binary tables entries: 1/1/1
-Single binary table entries: 1/1/1
+Main binary table entries: 1/1/1
 Special OIDs: 4105, 0
 Checksum found 0xFD752110, calculated 0xFD752110
