@@ -1,7 +1,7 @@
 tttool: src/*.hs
 	# cabal update
 	cabal install --only-dependencies
-	cabal install --bindir=.
+	cabal install exe:tttool --install-method=copy --overwrite-policy=always
 
 all: tttool libtiptoi gameanalyse makegraphic
 
